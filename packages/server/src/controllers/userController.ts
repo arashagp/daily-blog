@@ -1,10 +1,14 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 
 import { prisma } from "../services/database.js";
 import { UserType } from "@monorepo/types";
 
 export class User {
-    static async createUser(req: Request, res: Response) {
+    static async createUser(
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ): Promise<void> {
         const { username, email, password } = req.body;
 
         if (username == null || password == null) {
@@ -13,6 +17,8 @@ export class User {
                 data: null,
                 message: "Username and password are required",
             });
+            // TODO: Check to see this way can be work or not
+            next();
             return;
         } else {
             let user;
@@ -43,7 +49,11 @@ export class User {
         }
     }
 
-    static async getUser(req: Request, res: Response) {
+    static async getUser(
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ): Promise<void> {
         const id = parseInt(req.params.id);
 
         if (id == null) {
@@ -52,6 +62,8 @@ export class User {
                 data: null,
                 message: "missed id Please Enter Your Id",
             });
+            // TODO: Check to see this way can be work or not
+            next();
             return;
         } else {
             let result;
@@ -82,6 +94,8 @@ export class User {
                     data: null,
                     message: "User Not Found",
                 });
+                // TODO: Check to see this way can be work or not
+                next();
                 return;
             } else {
                 res.status(200).json({
@@ -94,7 +108,11 @@ export class User {
         }
     }
 
-    static async updateUser(req: Request, res: Response) {
+    static async updateUser(
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ): Promise<void> {
         const { username, email, password, posts } = req.body;
         const id = parseInt(req.params.id);
 
@@ -131,6 +149,8 @@ export class User {
                     data: null,
                     message: "Password is same as previous",
                 });
+                // TODO: Check to see this way can be work or not
+                next();
             } else {
                 newUser!.password = password;
             }
@@ -144,6 +164,8 @@ export class User {
                 data: null,
                 message: "Posts can't be updated here",
             });
+            // TODO: Check to see this way can be work or not
+            next();
             return;
         }
 

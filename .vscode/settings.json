@@ -1,0 +1,14 @@
+{
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "typescript.validate.enable": true,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.tslint": "always"
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/node_modules": true,
+        "**/dist": true
+    }
+}

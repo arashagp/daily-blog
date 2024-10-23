@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "module": "ESNext", // ESM module system
+        "moduleResolution": "Node",
+        "target": "ESNext", // Modern JS features
+        "esModuleInterop": true, // Ensures compatibility with CommonJS/ESM imports
+        "skipLibCheck": true, // Skip type checks for libraries
+        "strict": true
+    }
+}
